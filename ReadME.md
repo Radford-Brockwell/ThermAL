@@ -48,52 +48,14 @@ All outputs are written into per-job directories named after each input sequence
 Python 3.8+
 
 
-
-Pandas
-
-
-
-NumPy
-
-
-
-SciPy
-
-
-
-scikit-learn
-
-
-
-seaborn
-
-
-
-matplotlib
-
-
-
-Pillow
-
-
-
+scikit-learn==1.2.2
+scipy>=1.10     
+pandas
+numpy
 joblib
-
-
-
-Tkinter
-
-
-
-You can install most dependencies with:
-
-
-
-bash
-
-Copy
-
-Edit
+seaborn
+matplotlib
+pillow
 
 pip install pandas numpy scipy scikit-learn seaborn matplotlib pillow joblib
 
@@ -198,4 +160,5 @@ Plot of the (–1×) sliding window average highlighting stabilising regions. Th
 
 
 Any problems I am more than happy to chat: conor\_mckay98@aol.com   or  https://www.linkedin.com/in/conor-mckay-babba7171/ (PhD student @ University of Leeds/AstraZeneca)
+
 
