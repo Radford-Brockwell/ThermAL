@@ -50,7 +50,7 @@ Python 3.8+
 
 scikit-learn==1.2.2
 
-scipy>=1.10     
+scipy==1.9.3     
 
 pandas
 
@@ -61,6 +61,8 @@ joblib
 seaborn
 
 matplotlib
+
+openpyxl
 
 pillow
 
@@ -167,6 +169,7 @@ Plot of the (–1×) sliding window average highlighting stabilising regions. Th
 
 
 Any problems I am more than happy to chat: conor\_mckay98@aol.com   or  https://www.linkedin.com/in/conor-mckay-babba7171/ (PhD student @ University of Leeds/AstraZeneca)
+
 
 
 
