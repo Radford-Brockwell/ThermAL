@@ -7,6 +7,7 @@
 !<img src="ThermAL.png" alt="ThermAL Logo" width="300"/>
 
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/tpbla-thermal)
+
 ---
 
 ## 🔧 Installation
