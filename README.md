@@ -40,7 +40,7 @@ pip install pandas numpy scipy==1.9.3 scikit-learn==1.2.2 seaborn matplotlib pil
 
 ## 🧪 What is ThermAL?
 
-ThermAL is a **desktop GUI + CLI tool** for predicting regions that stabilise amyloid fibrils.
+ThermAL is a tool for predicting regions that stabilise amyloid fibrils.
 
 **Note:** The feature extraction step can be time‑limiting for larger sequences. These features are reusable for other ML tasks.
 
@@ -79,20 +79,20 @@ All outputs are written into per‑job directories named after each input sequen
 └── README.md
 ```
 
-> Place all `.xlsx` atlases and `ThermAL.joblib` inside the `required_docs/` folder.
+
 
 ---
 
 ## 🚀 Usage (GUI)
 
-1) Ensure the `required_docs/` folder (with all `.xlsx` atlases and the model file) is present.
-2) Launch the GUI:
+
+1) Launch the GUI:
 
 ```bash
 tpbla-thermal-gui
 ```
 
-3) In the GUI:
+2) In the GUI:
    - Click **Select FASTA File** and choose your `.fasta` or `.fa` file.
    - Click **Run Analysis**.
    - Progress bars will update during AAC/DPC and feature processing.
