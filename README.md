@@ -6,6 +6,7 @@
 
 <img src="ThermAL.png" alt="ThermAL Logo" width="300"/>
 
+
 ---
 
 ## 🔧 Installation
@@ -95,6 +96,13 @@ tpbla-thermal-gui
 When complete, you’ll find a subfolder per sequence in the working directory containing the outputs above.
 
 ---
+## 📖 Citation
+
+If you use ThermAL in your research, please cite:
+
+> McKay, C. E., Deans, M., Connor, J., Saunders, J. C., Lloyd, C., Radford, S. E., Brockwell, D. J. (in press).  
+> *Employing deep mutational scanning in the E. coli periplasm to decode the thermodynamic landscape for amyloid formation.*  
+> Proceedings of the National Academy of Sciences (PNAS), 2025.
 
 ## 📬 Contact
 
