@@ -11,8 +11,22 @@ requires-python = ">=3.8"
 license = { file = "LICENSE" }
 authors = [{ name = "Conor McKay" }]
 
+dependencies = [
+  "pandas",
+  "numpy",
+  "scipy==1.9.3",
+  "scikit-learn==1.2.2",
+  "seaborn",
+  "matplotlib",
+  "pillow",
+  "joblib",
+  "openpyxl",
+]
+
 [project.scripts]
 tpbla-thermal = "tpbla_thermal.cli:main"
+tpbla-thermal-gui = "tpbla_thermal.gui:main"  # optional direct GUI entry
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tpbla_thermal"]
+
