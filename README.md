@@ -1,229 +1,139 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 
 ![ThermAL Logo](ThermAL.png)
 
-# TPBLA_ThermAL
-
-TPBLA_ThermAL is a desktop command-line tool for predicting regions that stabilise amyloid fibrils from sequence.  
-It was developed as part of **McKay et al. 2025**.
+**TPBLA_ThermAL** is a desktop GUI tool for predicting regions that stabilise amyloid fibrils.  
+It takes one or more FASTA sequences as input, generates single–residue variants, extracts physicochemical features, and predicts fitness landscapes using a pre-trained Random Forest model.
 
 ---
 
-## 🚀 Quick install (dev)
+## 🚀 Quick install (development)
 
 ```bash
+# Clone the repository
 git clone https://github.com/conor-mckay98/ThermAL
 cd ThermAL
+
+# Install in editable mode
 python -m pip install -e .
+
+# Run the GUI
 tpbla-thermal
 
 📦 Requirements
 
-Python 3.8+
+    Python 3.8+
 
-Dependencies:
-pip install pandas numpy scipy scikit-learn seaborn matplotlib pillow joblib openpyxl
+    scikit-learn==1.2.2
 
+    scipy==1.9.3
 
+    pandas
 
+    numpy
 
+    joblib
 
+    seaborn
 
+    matplotlib
 
+    openpyxl
 
+    pillow
 
+    tk (comes with most Python distributions, but may require sudo apt-get install python3-tk on Linux)
 
+All dependencies are declared in pyproject.toml and will be installed automatically with pip.
+🧠 How it works
 
+ThermAL generates and evaluates variants of input sequences:
 
+    Input: FASTA file(s) with protein sequence(s).
 
+    Variant generation: Creates all single–residue variants.
 
+    Feature extraction:
 
+        Amino Acid Composition (AAC)
 
+        Dipeptide Composition (DPC)
 
+        Sliding window AUC of physicochemical properties (Bulkiness, Polarity, Hydrophobicity, etc.).
 
+    Prediction: Pre-trained Random Forest model scores variant fitness.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ThermAL is a desktop GUI tool for predicting regions that stabilise amyloid fibrils.
-
-
-
-
-NOTE: The feature extraction step can be time limiting for larger sequences. Thees features are not limited to ThermAL and can be used for other machine learning tasks too!
-
-
-
-It takes one or more FASTA sequences as input, generates all single–residue variants, computes physicochemical features (AAC, DPC, sliding‐window AUC), feeds them into a pre-trained Random Forest model, and finally produces many files but the important ones are:
-
-
-
-Predicted\_fitness\_with\_1\_letter\_mutations.xlsx
-
-
-
-heatmap\_simple.xlsx
-
-
-
-heatmap.png
-
-
-
-sliding\_window.xlsx
-
-
-
-sliding\_window\_with\_foldx.png
-
-
-
-All outputs are written into per-job directories named after each input sequence.
-
-
-
-📦 Requirements
-
-Python 3.8+
-
-
-scikit-learn==1.2.2
-
-scipy==1.9.3     
-
-pandas
-
-numpy
-
-joblib
-
-seaborn
-
-matplotlib
-
-openpyxl
-
-pillow
-
-pip install pandas numpy scipy scikit-learn seaborn matplotlib pillow joblib
-
-
+    Output: Excel tables and plots, saved per-sequence.
 
 📁 Project Structure
 
-/ThermAL
-
+ThermAL/
 │
-
-├── required\_docs/                  ← precomputed resources
-
-│   ├── 3\_B\_Atlas.xlsx
-
-│   ├── 3\_BT\_Atlas.xlsx
-
+├── src/tpbla_thermal/        ← Python package
+│   ├── cli.py                ← CLI entrypoint
+│   └── gui.py                ← GUI implementation
+│
+├── required_docs/            ← model + reference atlases (not tracked in GitHub)
+│   ├── 3_B_Atlas.xlsx
+│   ├── 3_BT_Atlas.xlsx
 │   ├── … (other atlas files)
-
 │   └── ThermAL.joblib
-
 │
+├── ThermAL.png               ← logo displayed in GUI
+├── ThermAL.ipynb             ← development notebook
+├── pyproject.toml             ← build config (dependencies, entrypoints)
+├── LICENSE
+└── README.md                  ← this file
 
-├── ThermAL.png                     ← logo displayed in GUI
+🎛️ Usage
 
-├── ThermAL.ipynb                  ← main script (your Python file)
+    Ensure the required_docs/ folder (with all .xlsx atlases and the model file ThermAL.joblib) is present.
 
-└── README.md                       ← this file
+    Run:
 
+tpbla-thermal
 
+    In the GUI:
 
-^Please save atlases and ThermAL into new folder required\_docs
+        Select FASTA File → choose your .fasta or .fa.
 
-🚀 Usage
+        Run Analysis → progress bars update as AAC/DPC and feature extraction run.
 
-
-
-Ensure the required\_docs/ folder (with all .xlsx atlases and model file) is present.
-
-
-
-Run:
-
-Open the notebook -> install dependencies -> Run ThermAL
-
-In the GUI:
-
-
-
-Click Select FASTA File and choose your .fasta or .fa file.
-
-
-
-Click Run Analysis.
-
-
-
-Watch the progress bars as AAC/DPC and feature‐processing steps execute.
-
-
-
-When complete, you’ll find one subfolder per sequence in the working directory, each containing exactly the five output files.
-
-
+        Results are written into a folder named after each sequence header.
 
 🔍 Outputs
 
-Inside each job folder (named after your FASTA header), you’ll get:
+Inside each job folder (named after the FASTA header), you’ll find:
 
+    Predicted_fitness_with_1_letter_mutations.xlsx
+    Full table of variants, predictions, and mutation codes.
 
+    heatmap_simple.xlsx
+    Pivot table of mean predicted fitness per mutation/position.
 
-Predicted\_fitness\_with\_1\_letter\_mutations.xlsx
+    heatmap.png
+    Visual heatmap (blue→white→red), wild-type cells bordered in black.
 
-Full table of variants, model predictions, and one-letter mutation codes.
+    sliding_window.xlsx
+    5-residue sliding window average of predicted fitness.
 
+    sliding_window_with_foldx.png
+    Plot highlighting stabilising regions.
 
+📖 Citation
 
-heatmap\_simple.xlsx
+If you use this tool, please cite:
 
-Pivot table of mean predicted fitness per mutation/position.
+> McKay et al., 2025
+> *"TPBLA_ThermAL: Machine learning for amyloid thermodynamic landscape prediction"*
+"TPBLA_ThermAL: Machine learning for amyloid thermodynamic landscape prediction"
 
+(CITATION.cff coming soon for GitHub citation support.)
+🤝 Contact
 
+Any problems or questions?
+📧 conor_mckay98@aol.com
 
-heatmap.png
+🔗 [LinkedIn](https://www.linkedin.com/in/conor-mckay-babba7171/)
 
-Visual heatmap (lightskyblue⇢white⇢red) with wild-type cells bordered in black. This may be squashed for larger sequences but can be replotted using the data present in heatmap\_simple.xlsx
-
-
-
-sliding\_window.xlsx
-
-Centered 5-residue sliding‐window average of the pivot table means.
-
-
-
-sliding\_window\_with\_foldx.png
-
-Plot of the (–1×) sliding window average highlighting stabilising regions. This may be squashed for larger sequences but can be replotted using the data present in sliding\_window.xlsx
-
-
-
-
-
-Any problems I am more than happy to chat: conor\_mckay98@aol.com   or  https://www.linkedin.com/in/conor-mckay-babba7171/ (PhD student @ University of Leeds/AstraZeneca)
-
-
-
-
-
-
+PhD Student @ University of Leeds
