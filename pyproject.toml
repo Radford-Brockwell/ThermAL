@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tpbla-thermal"
+version = "0.0.1"
+description = "TPBLA_ThermAL: ML for amyloid thermodynamic landscape prediction."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [{ name = "Conor McKay" }]
+
+[project.scripts]
+tpbla-thermal = "tpbla_thermal.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tpbla_thermal"]
