@@ -1,12 +1,11 @@
 # ThermAL (**Therm**odynamics of **A**myloid **L**andscapes)
 
-
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PyPI - Version](https://img.shields.io/pypi/v/tpbla-thermal)](https://pypi.org/project/tpbla-thermal/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tpbla-thermal)](https://pypi.org/project/tpbla-thermal/)
 
-!<img src="ThermAL.png" alt="ThermAL Logo" width="300"/>
+<img src="ThermAL.png" alt="ThermAL Logo" width="300"/>
 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/tpbla-thermal)
 
 ---
 
