@@ -2,13 +2,64 @@
 
 ![ThermAL Logo](ThermAL.png)
 
+# TPBLA_ThermAL
+
+TPBLA_ThermAL is a desktop command-line tool for predicting regions that stabilise amyloid fibrils from sequence.  
+It was developed as part of **McKay et al. 2025**.
+
+---
+
+## 🚀 Quick install (dev)
+
+```bash
+git clone https://github.com/conor-mckay98/ThermAL
+cd ThermAL
+python -m pip install -e .
+tpbla-thermal
+
+📦 Requirements
+
+Python 3.8+
+
+Dependencies:
+pip install pandas numpy scipy scikit-learn seaborn matplotlib pillow joblib openpyxl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ThermAL is a desktop GUI tool for predicting regions that stabilise amyloid fibrils.
 
-
-
-How ThermAL was created is outlined in McKay et al 2025.
 
 
 
@@ -170,6 +221,7 @@ Plot of the (–1×) sliding window average highlighting stabilising regions. Th
 
 
 Any problems I am more than happy to chat: conor\_mckay98@aol.com   or  https://www.linkedin.com/in/conor-mckay-babba7171/ (PhD student @ University of Leeds/AstraZeneca)
+
 
 
 
