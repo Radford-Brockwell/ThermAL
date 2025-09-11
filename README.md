@@ -2,7 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-![ThermAL Logo](ThermAL.png)
+!<img src="ThermAL.png" alt="ThermAL Logo" width="300"/>
+
 
 ---
 
