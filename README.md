@@ -1,4 +1,5 @@
-# **Therm**AL (**A**myloid **L**andscapes)
+# ThermAL (**Therm**odynamics of **A**myloid **L**andscapes)
+
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
