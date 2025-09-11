@@ -1,139 +1,107 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+# TPBLA_ThermAL
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ![ThermAL Logo](ThermAL.png)
 
-**TPBLA_ThermAL** is a desktop GUI tool for predicting regions that stabilise amyloid fibrils.  
-It takes one or more FASTA sequences as input, generates single–residue variants, extracts physicochemical features, and predicts fitness landscapes using a pre-trained Random Forest model.
+---
+
+## 🔧 Quick Install (dev)
+
+```bash
+git clone https://github.com/conor-mckay98/ThermAL
+cd ThermAL
+python -m pip install -e .
+tpbla-thermal
+```
 
 ---
 
-## 🚀 Quick install (development)
+## 📦 Requirements
+
+- Python 3.8+
+
+Dependencies:
 
 ```bash
-# Clone the repository
-git clone https://github.com/conor-mckay98/ThermAL
-cd ThermAL
+pip install pandas numpy scipy==1.9.3 scikit-learn==1.2.2 seaborn matplotlib pillow joblib openpyxl
+```
 
-# Install in editable mode
-python -m pip install -e .
+---
 
-# Run the GUI
-tpbla-thermal
+## 🧪 What is ThermAL?
 
-📦 Requirements
+ThermAL is a **desktop GUI + CLI tool** for predicting regions that stabilise amyloid fibrils.
 
-    Python 3.8+
+NOTE: The feature extraction step can be time-limiting for larger sequences. These features are not limited to ThermAL and can be reused for other machine learning tasks.
 
-    scikit-learn==1.2.2
+ThermAL takes one or more FASTA sequences as input, generates all single–residue variants, computes physicochemical features (AAC, DPC, sliding‐window AUC), feeds them into a pre-trained Random Forest model, and produces several output files.  
 
-    scipy==1.9.3
+Key outputs include:
 
-    pandas
+- `Predicted_fitness_with_1_letter_mutations.xlsx`  
+- `heatmap_simple.xlsx`  
+- `heatmap.png`  
+- `sliding_window.xlsx`  
+- `sliding_window_with_foldx.png`  
 
-    numpy
+All outputs are written into per-job directories named after each input sequence.
 
-    joblib
+---
 
-    seaborn
+## 📁 Project Structure
 
-    matplotlib
-
-    openpyxl
-
-    pillow
-
-    tk (comes with most Python distributions, but may require sudo apt-get install python3-tk on Linux)
-
-All dependencies are declared in pyproject.toml and will be installed automatically with pip.
-🧠 How it works
-
-ThermAL generates and evaluates variants of input sequences:
-
-    Input: FASTA file(s) with protein sequence(s).
-
-    Variant generation: Creates all single–residue variants.
-
-    Feature extraction:
-
-        Amino Acid Composition (AAC)
-
-        Dipeptide Composition (DPC)
-
-        Sliding window AUC of physicochemical properties (Bulkiness, Polarity, Hydrophobicity, etc.).
-
-    Prediction: Pre-trained Random Forest model scores variant fitness.
-
-    Output: Excel tables and plots, saved per-sequence.
-
-📁 Project Structure
-
-ThermAL/
+```
+/ThermAL
 │
-├── src/tpbla_thermal/        ← Python package
-│   ├── cli.py                ← CLI entrypoint
-│   └── gui.py                ← GUI implementation
-│
-├── required_docs/            ← model + reference atlases (not tracked in GitHub)
+├── required_docs/                  ← precomputed resources
 │   ├── 3_B_Atlas.xlsx
 │   ├── 3_BT_Atlas.xlsx
 │   ├── … (other atlas files)
 │   └── ThermAL.joblib
 │
-├── ThermAL.png               ← logo displayed in GUI
-├── ThermAL.ipynb             ← development notebook
-├── pyproject.toml             ← build config (dependencies, entrypoints)
-├── LICENSE
-└── README.md                  ← this file
+├── ThermAL.png                     ← logo displayed in GUI
+├── ThermAL.ipynb                   ← example notebook
+└── README.md                       ← this file
+```
 
-🎛️ Usage
+> Make sure all `.xlsx` atlases and the `ThermAL.joblib` model are inside the `required_docs/` folder.
 
-    Ensure the required_docs/ folder (with all .xlsx atlases and the model file ThermAL.joblib) is present.
+---
 
-    Run:
+## 🚀 Usage
 
-tpbla-thermal
+Ensure the `required_docs/` folder (with all `.xlsx` atlases and the model file) is present.
 
-    In the GUI:
+Then launch the GUI:
 
-        Select FASTA File → choose your .fasta or .fa.
+```bash
+tpbla-thermal-gui
+```
 
-        Run Analysis → progress bars update as AAC/DPC and feature extraction run.
+In the GUI:
 
-        Results are written into a folder named after each sequence header.
+1. Click **Select FASTA File** and choose your `.fasta` or `.fa` file.  
+2. Click **Run Analysis**.  
+3. Watch the progress bars as AAC/DPC and feature-processing steps execute.  
+4. When complete, you’ll find one subfolder per sequence in the working directory, each containing exactly the five output files.
 
-🔍 Outputs
+---
 
-Inside each job folder (named after the FASTA header), you’ll find:
+## 🔍 Outputs (example)
 
-    Predicted_fitness_with_1_letter_mutations.xlsx
-    Full table of variants, predictions, and mutation codes.
+Inside each job folder (named after your FASTA header), you’ll get:
 
-    heatmap_simple.xlsx
-    Pivot table of mean predicted fitness per mutation/position.
+- **Predicted_fitness_with_1_letter_mutations.xlsx** – Full table of variants, predictions, and mutation codes.  
+- **heatmap_simple.xlsx** – Pivot table of mean predicted fitness.  
+- **heatmap.png** – Visual heatmap (WT cells bordered in black).  
+- **sliding_window.xlsx** – Centered 5-residue rolling mean.  
+- **sliding_window_with_foldx.png** – Plot highlighting stabilising regions.  
 
-    heatmap.png
-    Visual heatmap (blue→white→red), wild-type cells bordered in black.
+---
 
-    sliding_window.xlsx
-    5-residue sliding window average of predicted fitness.
+## 📬 Contact
 
-    sliding_window_with_foldx.png
-    Plot highlighting stabilising regions.
-
-📖 Citation
-
-If you use this tool, please cite:
-
-> McKay et al., 2025
-> *"TPBLA_ThermAL: Machine learning for amyloid thermodynamic landscape prediction"*
-"TPBLA_ThermAL: Machine learning for amyloid thermodynamic landscape prediction"
-
-(CITATION.cff coming soon for GitHub citation support.)
-🤝 Contact
-
-Any problems or questions?
-📧 conor_mckay98@aol.com
-
-🔗 [LinkedIn](https://www.linkedin.com/in/conor-mckay-babba7171/)
-
-PhD Student @ University of Leeds
+Any problems, feel free to reach out:  
+📧 conor_mckay98@aol.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/conor-mckay-babba7171/)  
