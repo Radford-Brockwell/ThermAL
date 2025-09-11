@@ -7,7 +7,7 @@
 
 ---
 
-## 🔧 Quick Install (dev)
+## 🔧 Installation
 
 ```bash
 git clone https://github.com/conor-mckay98/ThermAL
